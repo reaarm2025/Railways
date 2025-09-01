@@ -66,6 +66,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database config using DATABASE_URL or fallback to SQLite
 DATABASE_URL = os.getenv('DATABASE_URL')
 
+<<<<<<< HEAD
 if not DATABASE_URL:
     raise ValueError("DATABASE_URL environment variable not set")
 
@@ -80,6 +81,24 @@ else:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
+=======
+if DATABASE_URL.startswith("sqlite"):
+    # Local SQLite setup
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': DATABASE_URL.replace("sqlite:///", ""),
+        }
+    }
+else:
+    # PostgreSQL or other database
+    DATABASES = {
+        'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600, ssl_require=not os.getenv('DEBUG', 'False').lower() in ['true', '1', 'yes'])
+    }
+
+
+
+>>>>>>> 447ab4e (settings.py file corrected)
 
 # Password Validators
 AUTH_PASSWORD_VALIDATORS = [
