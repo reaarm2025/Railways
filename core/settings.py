@@ -10,7 +10,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 
-
 # Debug mode
 DEBUG = os.getenv('DEBUG', 'False').lower() in ['true', '1', 'yes']
 print(f"{DEBUG=}")
@@ -81,9 +80,6 @@ else:
     DATABASES = {
         'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600, ssl_require=not os.getenv('DEBUG', 'False').lower() in ['true', '1', 'yes'])
     }
-
-
-
 
 # Password Validators
 AUTH_PASSWORD_VALIDATORS = [
