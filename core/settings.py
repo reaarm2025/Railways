@@ -9,6 +9,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Load environment variables from .env file
 load_dotenv(os.path.join(BASE_DIR, '.env'))
 
+
+
 # Debug mode
 DEBUG = os.getenv('DEBUG', 'False').lower() in ['true', '1', 'yes']
 print(f"{DEBUG=}")
