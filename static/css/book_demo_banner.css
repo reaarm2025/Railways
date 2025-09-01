@@ -1,0 +1,156 @@
+/* Demo Banner Styling */
+/* Centered Form Styling */
+.demo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  padding: 2rem;
+  margin-top: 100px;
+}
+.demo-card {
+  background: #00A784;
+  color: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 167, 132, 0.2);
+  width: 100%;
+  max-width: 500px;
+  overflow: hidden;
+}
+
+.demo-header {
+  padding: 2rem 2rem 1rem;
+  text-align: center;
+}
+
+.demo-header h3 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.demo-header p {
+  opacity: 0.9;
+  margin-bottom: 0;
+}
+
+.demo-form {
+  padding: 0 2rem 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 8px;
+  font-size: 1rem;
+  background: rgba(255,255,255,0.1);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: white;
+  background: rgba(255,255,255,0.2);
+}
+
+.form-group input::placeholder {
+  color: rgba(255,255,255,0.7);
+}
+
+.demo-btn {
+  width: 100%;
+  background: white;
+  color: #00A784;
+  border: none;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.demo-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.demo-btn::after {
+  content: '';
+  transition: transform 0.3s ease;
+}
+
+.demo-btn:hover::after {
+  transform: translateX(3px);
+}
+
+/* Modal Styling */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-container {
+  background: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-container {
+  transform: translateY(0);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+}
+
+.modal-content {
+  padding: 2rem;
+}
+
+.modal-trigger {
+  background: #00A784;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+

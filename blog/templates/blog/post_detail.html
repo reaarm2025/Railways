@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+
+<div class="news-splash">News Splash</div>
+<div class="post-detail-container">
+    <!-- Main Post Content (70% width) -->
+    <main class="post-main-content">
+        <article class="post-article">
+            {% if post.featured_image %}
+            <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="post-featured-image">
+            {% endif %}
+
+            <header class="post-header">
+                <h1 class="post-title">{{ post.title }}</h1>
+                <div class="post-meta">
+                    <span class="post-author">By {{ post.author }}</span>
+                    <span class="post-date">{{ post.created_at|date:"F j, Y" }}</span>
+                </div>
+            </header>
+
+            <div class="post-content">
+                {{ post.content|safe }}
+            </div>
+
+            <footer class="post-footer">
+                <div class="post-categories">
+                    {% for category in post.categories.all %}
+                    <a href="{% url 'category_posts' category.slug %}" class="post-category">{{ category.name }}</a>
+                    {% endfor %}
+                </div>
+                <a href="{% url 'post_list' %}" class="back-link">&larr; Back to Posts</a>
+            </footer>
+        </article>
+    </main>
+
+    <!-- Sidebar (30% width) -->
+    <aside class="post-sidebar">
+        <section class="sidebar-section categories">
+            <h2 class="sidebar-title">Categories</h2>
+            <div class="category-tags">
+                {% for category in categories %}
+                <a href="{% url 'category_posts' category.slug %}" class="category-tag">{{ category.name }}</a>
+                {% endfor %}
+            </div>
+        </section>
+        <section class="sidebar-section recent-posts">
+            <h2 class="sidebar-title">Recent Posts</h2>
+            <ul class="recent-posts-list">
+                {% for recent in recent_posts %}
+                <li class="recent-post">
+                    <a href="{{ recent.get_absolute_url }}" class="recent-post-link">
+                        {% if recent.featured_image %}
+                        <img src="{{ recent.featured_image.url }}" alt="{{ recent.title }}" class="recent-post-image">
+                        {% endif %}
+                        <div class="recent-post-info">
+                            <h3 class="recent-post-title">{{ recent.title }}</h3>
+                            <span class="recent-post-date">{{ recent.created_at|date:"M j, Y" }}</span>
+                        </div>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section class="sidebar-section newsletter">
+            <h2 class="sidebar-title">Newsletter</h2>
+            <p class="sidebar-text">Stay updated with our latest posts</p>
+            <form class="newsletter-form" id="newsletterForm" method="post" action="{% url 'subscribe_newsletter' %}">
+                {% csrf_token %}
+                <input type="email" name="email" placeholder="Your email address" required>
+                <button type="submit" id="subscribeBtn">Subscribe</button>
+            </form>
+            <div id="newsletterResponse" class="newsletter-response"></div>
+        </section>
+
+       
+    </aside>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+
+{% endblock %}
+
+{% block extra_js %}
+
+{% endblock %}

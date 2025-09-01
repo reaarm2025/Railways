@@ -1,0 +1,52 @@
+<div class="position-sticky pt-3">
+    <div class="mb-4">
+        <h5>About</h5>
+        <p>Welcome to our blog! Here you'll find the latest articles on various topics.</p>
+    </div>
+    
+    <div class="mb-4">
+        <h5>Categories</h5>
+        <ul class="nav flex-column">
+            {% for category in categories %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'category_posts' category.slug %}">
+                    {{ category.name }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    <div class="mb-4">
+        <h5>Recent Posts</h5>
+        <ul class="list-unstyled">
+            {% for post in recent_posts %}
+            <li class="mb-2">
+                <a href="{{ post.get_absolute_url }}" class="text-decoration-none">
+                    {{ post.title|truncatewords:5 }}
+                </a>
+                <small class="text-muted d-block">{{ post.created_at|date:"M d" }}</small>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    {% include 'blog/includes/newsletter.html' %}
+    
+    <div class="mb-4">
+        <h5>Contact Us</h5>
+        <form id="contactForm" method="post" action="{% url 'submit_contact' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                <input type="text" class="form-control" name="name" placeholder="Your Name" required>
+            </div>
+            <div class="mb-3">
+                <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+            </div>
+            <div class="mb-3">
+                <textarea class="form-control" name="message" rows="3" placeholder="Your Message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Send Message</button>
+        </form>
+    </div>
+</div>

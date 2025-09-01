@@ -1,0 +1,40 @@
+{% load static %}
+<div class="footer-grunge">
+  <img src="{% static 'img/footerGrunge.png' %}" alt="">
+</div>
+<footer class="simple-footer">
+  <div class="container">
+        <div class="footer-content">
+            <!-- Logo and Name -->
+            <div class="footer-brand">
+                {% if company.logo %}
+                <img src="{{ company.logo.url }}" alt="{{ company.name }} Logo" class="footer-logo">
+                {% endif %}
+                <h3>{{ company.name }}</h3>
+            </div>
+        
+            <!-- Contact Info -->
+            <div class="footer-contact">
+                <p><i class="fas fa-map-marker-alt"></i> {{ company.address }}</p>
+                <p><i class="fas fa-phone"></i> {{ company.phone_number_1 }}</p>
+                {% if company.phone_number_2 %}
+                <p><i class="fab fa-whatsapp"></i> {{ company.phone_number_2 }}</p>
+                {% endif %}
+                <p><i class="fas fa-envelope"></i> {{ company.email }}</p>
+            </div>
+        
+            <!-- Social Media -->
+            <div class="footer-social">
+                {% for social in company.social_media.all %}
+                <a href="{{ social.url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ social.get_platform_display }}">
+                <i class="{{ social.icon_class }}"></i>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    
+        <div class="footer-copyright">
+        <p>&copy; {{ current_year }} {{ company.name }}. All rights reserved.</p>
+        </div>
+  </div>
+</footer>

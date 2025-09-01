@@ -1,0 +1,39 @@
+{% load static %}
+
+<nav class="navbar">
+  <div class="navbar-container">
+    <!-- Logo + Site Name -->
+    <div class="brand-wrapper">
+      {% if navbar %}
+        <a href="/" class="navbar-brand">
+          <img src="{{ navbar.logo.url }}" alt="{{ navbar.site_name }}" class="logo">
+          <span class="site-name">{{ navbar.site_name }}</span>
+        </a>
+      {% else %}
+        <a href="/" class="navbar-brand">
+          <img src="{% static 'images/default-logo.png' %}" alt="Default Logo" class="logo">
+          <span class="site-name">My Site</span>
+        </a>
+      {% endif %}
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-toggle" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="hamburger"></span>
+    </button>
+
+    <!-- Navigation Links -->
+    <div class="navbar-links" id="main-nav-links">
+      <div class="nav-center">
+        <a href="/">Home</a>
+        <a href="/about">About Us</a>
+        <a href="{% url 'product_list' %}">Products</a>
+        <a href="{% url 'post_list_all' %}">Blog</a>
+      </div>
+      <div class="nav-right">
+        <a href="#" class="contact-modal-btn">Partner with us</a>
+     </div>
+    </div>
+  </div>
+</nav>
+

@@ -1,0 +1,90 @@
+/* static/css/services.css */
+/* Core Layout - Unchanged */
+.services-main {
+  padding: 4rem 0;
+  background: #f9f9f9;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.service-item {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+.service-image {
+  flex: 1;
+}
+
+.service-image img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.service-content {
+  flex: 1;
+  
+
+}
+
+/* Typography Enhancements */
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 3rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+  color: #34495e;
+  margin-bottom: 1rem;
+}
+
+.service-description {
+  color: #7f8c8d;
+  line-height: 1.7;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.learn-more-btn {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background: #3498db;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.learn-more-btn:hover {
+  background: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Responsive Behavior (Unchanged) */
+@media (max-width: 768px) {
+  .service-item {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .service-image, 
+  .service-content {
+    width: 100%;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+}

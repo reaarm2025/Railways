@@ -1,0 +1,245 @@
+
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}BAA rearm.com{% endblock %}</title>
+    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    <link href="https://fonts.cdnfonts.com/css/monument" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
+    <link href="{% static 'css/animation.css' %}" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/tt-firs-neue-trl" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/contact-form.css' %}"><!-- contact-form css -->
+    <link rel="stylesheet" href="{% static 'blog/css/main.css' %}">      
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}"> <!-- navbar stysheet file -->
+    <link href="{% static 'css/hero.css' %}" rel="stylesheet"> <!-- hero stylesheet file -->
+    <link href="{% static 'css/services.css' %}" rel="stylesheet"> <!-- services stylesheet file -->
+    <link rel="stylesheet" href="{% static 'css/service_cards.css' %}"> <!-- services cards stylesheet file -->
+    <link rel="stylesheet" href="{% static 'css/book_demo_banner.css' %}"> <!-- book a demo stylesheet file -->
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/features.css' %}">
+    <link rel="stylesheet" href="{% static 'css/products.css' %}">
+    <link rel="stylesheet" href="{% static 'css/product_detail.css' %}">
+    <link rel="stylesheet" href="{% static 'css/modal-contact.css' %}">
+    <link rel="stylesheet" href="{% static 'css/post_detail.css' %}">
+    <link rel="stylesheet" href="{% static 'css/ceo.css' %}"> <!-- ceo stylesheet file -->
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">   <!-- this controls the blog section of the homepage -->
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <!-- Animate On Scroll Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+</head>
+<body>
+     {% include 'includes/navbar.html' %}  <!-- Navbar snippet -->
+     
+    {% block content %}{% endblock %}     <!-- Page content -->
+    
+
+    
+    {% include 'includes/footer.html' %} 
+    <!-- Contact Modal -->
+
+  <div id="contactModal" class="contact-modal">
+  <div class="contact-modal-content">
+    <span class="contact-close-btn">&times;</span>
+    <div class="contact-modal-header">
+      <h2>Partner With Us</h2>
+      <p>We are open to discussions and pilot whether you are an importer, investor, government agency, or a food brand, by filling out the form below REAA Resources Management Ltd is ready to partner for value and impact</p>
+    </div>
+    <form id="contactForm" class="contact-modal-form" method="post">
+      {% csrf_token %}
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Full Name*</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email*</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="position">Position</label>
+          <input type="text" id="position" name="position">
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone*</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="business_name">Business Name*</label>
+        <input type="text" id="business_name" name="business_name" required>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="business_type">Business Type*</label>
+          <input type="text" id="business_type" name="business_type" required placeholder="Importer, Investor, etc.">
+        </div>
+        <div class="form-group">
+          <label for="business_location">Business Location</label>
+          <input type="text" id="business_location" name="business_location">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="interest">Nature of Interest*</label>
+        <input type="text" id="interest" name="interest" required placeholder="What are you looking for?">
+      </div>
+
+      <div class="form-group">
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" rows="3"></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">
+        <span class="btn-text">Submit Request</span>
+        <span class="spinner"></span>
+      </button>
+      <div id="form-response" class="form-response"></div>
+    </form>
+  </div>
+  </div>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById("contactModal");
+    const contactForm = document.getElementById('contactForm');
+    
+    // Open modal
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.contact-modal-btn')) {
+            e.preventDefault();
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    });
+    
+    // Close modal
+    document.querySelector('.contact-close-btn').addEventListener('click', closeModal);
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) closeModal();
+    });
+    
+    // Form submission
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const submitBtn = this.querySelector('.submit-btn');
+            const responseDiv = document.getElementById('form-response');
+            
+            // Clear previous messages
+            responseDiv.style.display = 'none';
+            
+            // Loading state
+            submitBtn.classList.add('loading');
+            
+            try {
+                const response = await fetch("{% url 'submit_contact' %}", {
+                    method: 'POST',
+                    body: new FormData(this),
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-CSRFToken': this.querySelector('[name=csrfmiddlewaretoken]').value
+                    }
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showResponse('Thank you! We will contact you soon.', 'success');
+                    setTimeout(closeModal, 2000);
+                } else {
+                    showResponse(data.message || 'Please check the form and try again.', 'error');
+                }
+            } catch (error) {
+                showResponse('Network error. Please try again.', 'error');
+            } finally {
+                submitBtn.classList.remove('loading');
+            }
+        });
+    }
+    
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+    
+    function showResponse(message, type) {
+        const responseDiv = document.getElementById('form-response');
+        responseDiv.textContent = message;
+        responseDiv.className = `form-response ${type}`;
+        responseDiv.style.display = 'block';
+    }
+});
+</script>
+
+
+
+
+    
+
+
+
+
+
+   
+<script src="{% static 'js/navbar.js' %}"></script>
+<script src="{% static 'js/product_detail.js' %}"></script>
+
+<script src="{% static 'blog/js/newsletter.js' %}"></script>
+ <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      try {
+        AOS.init({
+          duration: 800,
+          once: true,
+          offset: 120,
+          easing: 'ease-out-quart'
+        });
+      } catch (e) {
+        console.warn('AOS initialization error:', e);
+      }
+    });
+  </script>
+
+  <!-- viewport code for the website -->
+  <script>
+    const sections = document.querySelectorAll('.fade-in-on-scroll');
+
+    const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+        entry.target.classList.add('visible-section'); // or remove opacity-0/add opacity-100
+        observer.unobserve(entry.target); // optional: remove after animation
+        }
+    });
+    }, {
+    threshold: 0.1
+    });
+
+    sections.forEach(section => {
+    observer.observe(section);
+    });
+
+  </script>
+  
+
+</body>
+</html>
+
+

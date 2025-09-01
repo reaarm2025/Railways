@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="demo-container">
+  <div class="demo-card">
+    <div class="demo-header">
+      <h3>Ready to see it in action?</h3>
+      <p>Book a personalized demo with our team</p>
+    </div>
+    
+    <form method="POST" action="{% url 'book_demo' %}" class="demo-form">
+      {% csrf_token %}
+      <div class="form-group">
+        {{ form.name }}
+      </div>
+      <div class="form-group">
+        {{ form.email }}
+      </div>
+      <div class="form-group">
+        {{ form.phone }}
+      </div>
+      <button type="submit" class="demo-btn">Schedule A Call →</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

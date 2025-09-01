@@ -1,0 +1,196 @@
+/* Base Styles */
+.navbar {
+  background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  position: fixed; /* Changed from relative to fixed */
+  width: 100%; /* Ensure it spans full width */
+  top: 0; /* Stick to the top */
+  left: 0; /* Align to the left */
+  z-index: 1000; /* High z-index to ensure it's above other elements */
+  font-family: 'TT Firs Neue Trl', sans-serif;
+  font-size: 16px;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+/* Branding */
+.brand-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 40px;
+  margin-right: 12px;
+}
+
+.site-name {
+  font-weight: 600;
+  color: #00A784;
+  display: inline-block;
+  max-width: 120px;
+  line-height: 1.2;
+}
+.contact-modal-btn {
+  background-color: #53ff03;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.contact-modal-btn:hover {
+  background-color: #2980b9;
+  color: white !important;
+  transform: translateY(-2px);
+}
+/* Desktop Navigation */
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.navbar-links a:hover{
+  text-decoration: underline 2px;
+  color: rgb(226, 108, 12);
+  
+}
+
+.nav-center {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-right {
+  
+  margin-left: 1rem;
+}
+
+.navbar a {
+  color: #00A784; 
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-right .contact-btn {
+  border-radius: 20px;
+  color: white;
+  padding: 1rem;
+  border-radius: 4px;
+  
+}
+.nav-right .contact-btn:hover{
+
+  background-color:aquamarine;
+  color: rgb(236, 144, 6);
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  
+}
+
+.hamburger {
+  display: block;
+  width: 25px;
+  height: 2px;
+  background: #333;
+  position: relative;
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 2px;
+  background: #333;
+  left: 0;
+  transition: all 0.3s ease;
+}
+
+.hamburger::before {
+  top: -8px;
+}
+
+.hamburger::after {
+  bottom: -8px;
+}
+
+/* Mobile Menu Active State */
+.mobile-menu-toggle.open .hamburger {
+  background: transparent;
+}
+
+.mobile-menu-toggle.open .hamburger::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.mobile-menu-toggle.open .hamburger::after {
+  transform: rotate(-45deg);
+  bottom: 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .mobile-menu-toggle {
+    display: block;
+  }
+  .site-name{
+    display: none;
+  }
+  .navbar-links {
+    position: fixed;
+    top: 70px; /* Height of your navbar */
+    left: 0;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    opacity: 0;
+    z-index: 999; /* Slightly below navbar but still above content */
+  }
+  
+  .navbar-links.active {
+    max-height: 500px;
+    opacity: 1;
+    padding: 1rem;
+  }
+  
+  .nav-center, .nav-right {
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
+  }
+  
+  .navbar-links a {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .contact-btn {
+    margin: 1rem 0 0;
+    width: 100%;
+    text-align: center;
+  }
+}

@@ -1,0 +1,110 @@
+ body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        h1 {
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .masonry {
+            column-count: 1;
+            column-gap: 1.5rem;
+        }
+
+        @media (min-width: 600px) {
+            .masonry {
+                column-count: 2;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .masonry {
+                column-count: 3;
+            }
+        }
+
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+            opacity: 1;
+            transform: translateY(40px);
+            transition: all 0.6s ease-out;
+        }
+
+        .masonry-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: block;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .card-body {
+            padding: 1rem;
+        }
+
+        .card-body h2 {
+            font-size: 1.25rem;
+            margin: 0 0 0.5rem;
+        }
+
+        .card-body .meta {
+            font-size: 0.875rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-body p {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-body a {
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+            background: #00A784;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        .card-body a:hover{
+            color: black;
+        }
+
+        .card-footer {
+            padding: 0.75rem 1rem;
+            background: #f0f0f0;
+            font-size: 0.875rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #888;
+            color: #fff;
+            padding: 0.25rem 0.5rem;
+            margin-right: 0.25rem;
+            border-radius: 4px;
+        }

@@ -1,0 +1,44 @@
+<!-- templates/includes/hero.html -->
+{% load static custom_filters %}
+
+{% with hero=hero_sections|dict_key:page_name|default:None %}
+<div class="hero-section" {% if hero and hero.background_image %}style="background-image: url('{{ hero.background_image.url }}')"{% endif %}>
+  <div class="hero-grunge">
+    <img src="{% static 'img/grunge.png' %}" alt="">
+  </div>
+  <div class="hero-content">
+    <h1 class="hero-title">{{ hero.title|default:"Default Title" }}</h1>
+    
+    {% if hero and hero.subtitle %}
+      <p class="hero-subtitle">{{ hero.subtitle }}</p>
+    {% endif %}
+    
+    <!-- CTA Buttons Container -->
+    <div class="cta-container">
+      {% if hero and hero.primary_cta_text %}
+        <a href=" {% url 'book_demo' %}"
+          class="cta-btn primary"
+          {% if '.' in hero.primary_cta_link %}target="_blank" rel="noopener"{% endif %}>
+          {{ hero.primary_cta_text }}
+        </a>
+      {% endif %}
+      
+      {% if hero and hero.secondary_cta_text %}
+        <a href="
+          {% if '/' not in hero.secondary_cta_link and '.' not in hero.secondary_cta_link %}
+            {% url hero.secondary_cta_link %}
+          {% else %}
+            {{ hero.secondary_cta_link|default:'#' }}
+          {% endif %}" 
+          class="cta-btn secondary"
+          {% if '.' in hero.secondary_cta_link %}target="_blank" rel="noopener"{% endif %}>
+          {{ hero.secondary_cta_text }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+  
+
+{% endwith %}

@@ -1,0 +1,286 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+  
+  <title>{{ meta_title }}</title>
+  <meta name="description" content="{{ meta_description }}">
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta property="og:title" content="{{ meta_title }}">
+  <meta property="og:description" content="{{ meta_description }}">
+  {% if about_content %}
+  <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ about_content.image.url }}">
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <main class="about-main">
+    <!-- Hero Section -->
+    {% with page_name="about" %}
+      {% include "includes/hero.html" %}
+    {% endwith %}
+
+    
+    <!-- About Section -->
+   
+
+    <section class="about-section fade-in-on-scroll hidden-section ">
+      <div class="container">
+        {% if about_content %}
+        <div class="about-grid">
+          <!-- Content Column -->
+          <div class="about-content">
+            <h1>{{ about_content.title }}</h1>
+            <p class="subtitle">{{ about_content.subtitle }}</p>
+            <div class="about-text">
+              {{ about_content.content|striptags|safe }}
+              
+            </div>
+            
+          </div>
+
+          <!-- Images Column -->
+          <div class="about-images">
+            <a href="https://wa.me/{{ about_content.phone_number|cut:' '|cut:'+' }}" 
+              class="whatsapp-float" 
+              target="_blank"
+              aria-label="Contact us on WhatsApp">
+              <i class="fab fa-whatsapp"></i> {{ about_content.phone_number }}
+            </a>
+            
+            <div class="main-image">
+              <img src="{{ about_content.main_image.url }}" 
+                  alt="{{ about_content.title }}"
+                  loading="lazy"
+                  width="600"
+                  height="400">
+            </div>
+            <div class="secondary-image">
+              <img src="{{ about_content.secondary_image.url }}" 
+                  alt="{{ about_content.title }} secondary image"
+                  loading="lazy"
+                  width="300"
+                  height="200">
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </section>
+    
+    <!-- vision and mission statement -->
+
+    <div class="mission-vision-container fade-in-on-scroll hidden-section ">
+    <div class="statement-card vision-card">
+        <div class="statement-header">
+            <div class="icon-circle">
+                <svg viewBox="0 0 24 24" width="32" height="32">
+                    <path fill="currentColor" d="M15,23H9V20.5C9,19.12 10.12,18 11.5,18H12.5C13.88,18 15,19.12 15,20.5M22,8V18L18,22H4A2,2 0 0,1 2,20V6A2,2 0 0,1 4,4H6V7A1,1 0 0,0 7,8H17A1,1 0 0,0 18,7V4H20A2,2 0 0,1 22,6M12,2A1,1 0 0,1 13,3A1,1 0 0,1 12,4A1,1 0 0,1 11,3A1,1 0 0,1 12,2Z"/>
+                </svg>
+            </div>
+            <h2>Our Vision</h2>
+        </div>
+        <div class="statement-content">
+            <p>To be a leading force in agricultural trade-empowering food supply chains locally and globally through the consistent delivery of premium raw crop produce, while fostering sustainable growth for our communities, clients, and workforce.</p>
+        </div>
+    </div>
+
+    <div class="statement-card mission-card">
+        <div class="statement-header">
+            <div class="icon-circle">
+                <svg viewBox="0 0 24 24" width="32" height="32">
+                    <path fill="currentColor" d="M3,3H21V7H3V3M4,8H20V21H4V8M9.5,11A0.5,0.5 0 0,0 9,11.5V13H15V11.5A0.5,0.5 0 0,0 14.5,11H9.5Z"/>
+                </svg>
+            </div>
+            <h2>Our Mission</h2>
+        </div>
+        <div class="statement-content">
+            <p>To drive food security and economic advancement by supplying the finest agricultural products at fair, competitive prices. We are committed to responsible sourcing, efficient distribution, and professional management services-ensuring every transaction contributes to opportunity, trust, and long-term success for our partners, employees and the market we serve.</p>
+        </div>
+    </div>
+</div>
+
+    <!-- core values -->
+
+
+   <section class="core-values fade-in-on-scroll hidden-section">
+  <div class="container">
+    <h2 class="section-title">Our Core Values</h2>
+    <p class="section-subtitle">The principles that guide everything we do</p>
+    
+    <div class="values-grid">
+      <!-- Value 1 -->
+      <div class="value-card" data-aos="fade-up">
+        <div class="card-content">
+          <div class="value-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2L4 12l8 10 8-10z"/></svg>
+          </div>
+          <div class="value-text">
+            <h3>Partnership</h3>
+            <p>Building strong, lasting relationships with clients, farmers, and global partners</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Value 2 -->
+      <div class="value-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="card-content">
+          <div class="value-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
+          </div>
+          <div class="value-text">
+            <h3>Excellence</h3>
+            <p>Committed to delivering superior service and unmatched product quality in every transaction.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Value 3 -->
+      <div class="value-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="card-content">
+          <div class="value-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 8h2a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h9"/></svg>
+          </div>
+          <div class="value-text">
+            <h3>Integrity</h3>
+            <p>We uphold honesty, transparency, and accountability in all our business dealings</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Value 4 -->
+      <div class="value-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="card-content">
+          <div class="value-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <div class="value-text">
+            <h3>Quality</h3>
+            <p>Supplying only premium, natural agricultural produce that meets international standards.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Value 5 - Reliability -->
+      <div class="value-card" data-aos="fade-up" data-aos-delay="400">
+        <div class="card-content">
+          <div class="value-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+            </svg>
+          </div>
+          <div class="value-text">
+            <h3>Reliability</h3>
+            <p>Dependable service, on-time delivery, and consistent product availability—every time.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Value 6 - Innovation -->
+      <div class="value-card" data-aos="fade-up" data-aos-delay="500">
+        <div class="card-content">
+          <div class="value-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 3c-4.97 0-9 3.185-9 7.115 0 2.557 1.522 4.82 3.889 6.115l-.78 2.77 3.116-1.65c.88.275 1.823.425 2.775.425 4.97 0 9-3.186 9-7.115C21 6.186 16.97 3 12 3zm0 12c-.825 0-1.63-.125-2.39-.355l-.57-.17-.6.32-.53-.14-.37.28-.38-.16.21-.42-.19-.45C6.3 13.295 5 11.705 5 10.115 5 7.286 8.135 5 12 5s7 2.286 7 5.115c0 2.83-3.135 5.115-7 5.115z"/>
+            </svg>
+          </div>
+          <div class="value-text">
+            <h3>Innovation</h3>
+            <p>Leveraging modern practices and technologies to improve efficiency and customer satisfaction.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Value 7 - Sustainability -->
+      <div class="value-card" data-aos="fade-up" data-aos-delay="600">
+        <div class="card-content">
+          <div class="value-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2zM12 5.24L17 16.14l-5 2.5-5-2.5L12 5.24z"/>
+            </svg>
+          </div>
+          <div class="value-text">
+            <h3>Sustainability</h3>
+            <p>Promoting environmentally responsible sourcing and supporting long-term agricultural growth.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+   </section>
+
+    <!-- ceo about section -->
+    <section id="leadership" class="leadership-section fade-in-on-scroll hidden-section">
+        <div class="container">
+            <h2>Our Leadership</h2>
+            {% for leader in leadership %}
+            <div class="leader-profile">
+                <img src="{{ leader.photo.url }}" alt="{{ leader.name }}">
+                <div class="leader-details">
+                    <h3>{{ leader.name }} <span>{{ leader.title }}</span></h3>
+                    <div class="leader-bio">
+                        {{ leader.full_bio|linebreaks }}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+
+    <!-- Team Section -->
+     {% if team_members %}
+    <section class="team-section fade-in-on-scroll hidden-section">
+      <div class="container">
+        <h2>Our Team</h2>
+        <p class="subtitle-team">Meet the people behind our success</p>
+        
+
+        <div class="team-cards">
+          {% for member in team_members %}
+          <div class="team-card">
+            <div class="card-image">
+              <img src="{{ member.image.url }}" 
+                   alt="{{ member.image_alt|default:member.name }}" 
+                   loading="lazy"
+                   width="300"
+                   height="300">
+            </div>
+            <div class="card-content-team">
+              <div class="card-name-team">
+                <h3>{{ member.name }}</h3>
+                <p class="position-name">{{ member.position }}</p>
+              </div>
+             
+              <p class="position">{{ member.bio }}</p>
+              <div class="social-links">
+                {% if member.linkedin %}
+                <a href="{{ member.linkedin }}" target="_blank" rel="noopener">
+                  <i class="fab fa-linkedin"></i>
+                </a>
+                {% endif %}
+                {% if member.twitter %}
+                <a href="{{ member.twitter }}" target="_blank" rel="noopener">
+                  <i class="fab fa-twitter"></i>
+                </a>
+                {% endif %}
+
+                {% if member.facebook %}
+                <a href="{{ member.facebook }}" target="_blank" rel="noopener">
+                  <i class="fab fa-facebook"></i>
+                </a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    {% endif %}
+  </main>
+{% endblock %}
+
+
+
+

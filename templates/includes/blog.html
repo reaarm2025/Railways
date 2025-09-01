@@ -1,0 +1,46 @@
+
+{% load static %}
+
+
+
+{% block content %}
+
+ <div class="blog_home fade-in-on-scroll hidden-section">
+    <!-- Featured Posts -->
+    <h2 class="section-title">Industry Trend</h2>
+    <section class="featured-posts">
+        
+        <div class="featured-grid">
+            {% for post in blog_posts %}
+            <article class="featured-card featured-{{ forloop.counter }}">
+                <div class="card-image">
+                    {% if post.featured_image %}
+                    <img src="{{ post.featured_image.url }}" alt="{{ post.title }}">
+                    {% endif %}
+                    <div class="category-badge">
+                        {% for category in post.categories.all|slice:":1" %}
+                        <span>{{ category.name }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="card-content-blog">
+                    <span class="post-date">{{ post.created_at|date:"M d, Y" }}</span>
+                    <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+                    <p class="excerpt">{{ post.content|striptags|truncatewords:20 }}</p>
+                    <a href="{{ post.get_absolute_url }}" class="read-more">Continue Reading →</a>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Regular Posts -->
+   
+
+   
+</div>
+{% endblock %}
+
+{% block extra_css %}
+
+{% endblock %}

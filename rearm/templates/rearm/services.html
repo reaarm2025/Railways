@@ -1,0 +1,44 @@
+<!-- templates/rearm/services.html -->
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  {# Hero Section #}
+  {% with page_name="services" %}
+    {% include "includes/hero.html" %}
+  {% endwith %}
+
+  {# Main Content #}
+ <!-- templates/rearm/services.html -->
+<section class="services-main">
+  <div class="container">
+    <h1>Our Services</h1>
+    
+    {% for service in services %}
+    <div class="service-item">
+      <div class="service-image">
+        <img src="{{ service.image.url }}" alt="{{ service.title }}" loading="lazy">
+      </div>
+      
+      <div class="service-content">
+        <h2>{{ service.title }}</h2>
+        <div class="service-description">
+          {{ service.short_description|safe|linebreaks }}
+        </div>
+        <a href="{{ service.get_absolute_url }}" class="learn-more-btn">Learn More</a>
+      </div>
+    </div>
+    {% endfor %}
+    
+  </div>
+</section>
+
+<!-- In any template where you want the banner -->
+{% include "includes/book_demo_banner.html" %}
+
+
+
+
+{% endblock %}
+
+

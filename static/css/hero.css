@@ -1,0 +1,169 @@
+/* static/css/hero.css */
+@font-face {
+    font-family: 'Poppins';
+    src: url('/static/fonts/MonumentExtended-Ultrabold.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+.hero-section {
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  color: white;
+  font-family: 'MonumentExtended', sans-serif;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background: rgba(0,0,0,0.5); */
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 2rem;
+}
+
+.hero-title {
+  font-family: 'MonumentExtended', sans-serif  !important;                  
+  color: rgb(255, 255, 255);
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+ 
+}
+
+.hero-subtitle {
+  font-family: 'TT Firs Neue Trl', sans-serif;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+
+
+/* static/css/hero.css */
+.cta-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.cta-btn {
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  min-width: 160px;
+  text-align: center;
+}
+
+.primary {
+  background: #00A784;
+  color: white;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+a.cta-btn.primary:hover {
+  color: rgb(226, 13, 13);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+.secondary {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+/* Hover Effects */
+
+
+.secondary:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+
+.hero-grunge{
+  position: absolute;
+  top: 600px;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+
+}
+.hero-grunge img{
+  width: 100%;
+  display: block;
+}
+
+/* Add to your hero.css */
+.cta-btn[target="_blank"]::after {
+  content: " ↗";
+  font-size: 0.8em;
+}
+
+/* For buttons without href */
+.cta-btn:not([href]), 
+.cta-btn[href="#"] {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .cta-container {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .cta-btn {
+    width: 100%;
+  }
+}
+  
+  
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  .hero-grunge{
+    top: 600px;
+  }
+  .hero-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .hero-cta {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+
+@media (max-width: 500px){
+  .hero-grunge{
+    top: -627px;
+  }
+  
+}

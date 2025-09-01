@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+  {# Hero Section #}
+  {% with page_name="products" %}
+    {% include "includes/hero.html" %}
+   
+  {% endwith %}
+
+
+<!-- A-Frame script for 360 viewer -->
+
+
+<div class="product-detail-container">
+    <div class="product-images">
+        {% if product.image_360 %}
+        <div class="main-image" style="width: 100%; height: 500px;">
+            <a-scene embedded>
+                <a-sky src="{{ product.image_360.url }}"></a-sky>
+                <a-camera look-controls></a-camera>
+            </a-scene>
+        </div>
+
+
+        {% else %}
+        <div class="main-image">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        </div>
+        {% endif %}
+
+        <!-- Thumbnail Row -->
+        <div class="thumbnail-row">
+            {% if product.image %}
+            <div class="thumbnail active">
+                <img src="{{ product.image.url }}" alt="Thumbnail">
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Product Information -->
+    <div class="product-info">
+        <h1 class="product-title">{{ product.name }}</h1>
+        <!-- uncomment the following line to display product price -->
+        <!-- <div class="product-price">₦{{ product.price }}</div> -->
+        <div class="product-description">
+            {{ product.description|linebreaks }}
+        </div>
+       <a href="{% url 'book_demo' %}"><button class="add-to-cart-btn">  Schedule A Call </button></a>
+    </div>
+</div>
+
+    
+    
+</div>
+<!-- Related Products (below main content) -->
+    <div class="related-products">
+        <h2>You May Also Like</h2>
+        <div class="related-grid">
+            {% for related in related_products %}
+            <div class="related-item">
+                <a href="{{ related.get_absolute_url }}">
+                    <img src="{{ related.image.url }}" alt="{{ related.name }}">
+                    <h3>{{ related.name }}</h3>
+                    <p class="product-description">{{ product.description|linebreaks }}</p>
+                    <!-- uncomment should you need it  -->
+                    <!-- <p>₦{{ related.price }}</p> -->
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+   
+        
+
+{% endblock %}
+
+

@@ -1,0 +1,121 @@
+
+
+{% extends "base.html" %}
+{% load custom_filters %}
+
+
+{% block content %}
+  {# Your existing hero section #}
+  {% with page_name="home" %}
+    {% include "includes/hero.html" %}
+  {% endwith %}
+  
+  
+   {% include "includes/features.html" %}
+
+<section class="about-section fade-in-on-scroll hidden-section ">
+  <div class="container">
+    {% if about_content %}
+    <div class="about-grid">
+      <!-- Content Column -->
+      <div class="about-content">
+        <h1>{{about_content.title}}</h1>
+        <p class="subtitle">{{about_content.subtitle}}</p>
+        <div class="about-text">
+          {{ about_content.content|striptags|truncatechars:300|safe }}
+          
+        </div>
+        <a href="{% url 'about' %}" class="learn-more-btn">Learn More</a>
+      </div>
+
+      <!-- Images Column -->
+      <div class="about-images">
+        <a href="https://wa.me/{{ about_content.phone_number|cut:' '|cut:'+' }}" 
+           class="whatsapp-float" 
+           target="_blank"
+           aria-label="Contact us on WhatsApp">
+          <i class="fab fa-whatsapp"></i> {{ about_content.phone_number }}
+        </a>
+        
+        <div class="main-image">
+          <img src="{{ about_content.main_image.url }}" 
+               alt="{{ about_content.title }}"
+               loading="lazy"
+               width="600"
+               height="400">
+        </div>
+        <div class="secondary-image">
+          <img src="{{ about_content.secondary_image.url }}" 
+               alt="{{ about_content.title }} secondary image"
+               loading="lazy"
+               width="300"
+               height="200">
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+
+    {% if ceo %}
+    <section class="ceo-spotlight fade-in-on-scroll hidden-section">
+        <div class="container">
+            <div class="ceo-card">
+                <div class="ceo-image">
+                    <img src="{{ ceo.photo.url }}" alt="{{ ceo.name }}" loading="lazy" width="600"
+                  height="400">
+                </div>
+                <div class="ceo-content">
+                    <span class="tag">Visionary Leadership Spotlight</span>
+                    
+                    <p class=".ceo-excerpt">{{ ceo.home_excerpt }}</p>
+                    <a href="{% url 'about' %}#leadership" class="cta-link">
+                        Read Full Message 
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+ <!-- Featured Products Section -->
+    <section class="featured-products fade-in-on-scroll hidden-section">
+        <div class="container">
+            <h2>Featured Products</h2>
+            <p></p>
+            <div class="product-grid">
+                {% for product in featured_products %}
+                <div class="product-card">
+                    <a href="{{ product.get_absolute_url }}">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                       
+                    </a>
+                     <div class="product-info">
+                        <a href="{{ product.get_absolute_url }}">
+                           <h3>{{ product.name }}</h3>
+                        </a>
+                          <p class="product-description">{{ product.description|striptags|truncatewords:20 }}</p>
+                          <!-- uncomment this should you want this later -->
+                            <!-- <p class="price">₦{{ product.price }}</p> -->
+                      </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="text-center">
+                <a href="{% url 'product_list' %}" class="view-more-btn">View All Products →</a>
+            </div>
+        </div>
+    </section>
+
+    {% include "includes/book_demo_banner.html" %}
+
+
+    {% include "includes/blog.html" %}
+    
+{% endblock %}
+
+

@@ -1,0 +1,98 @@
+/* Simple Footer Styles */
+.footer-grunge{
+  position: relative;
+  top: 5px;
+
+}
+.footer-grunge img{
+  width: 100%;
+}
+.simple-footer {
+  font-family: 'TT Firs Neue Trl', sans-serif;
+  background: #00A784;
+  color: #fff;
+  padding: 2rem 0;
+  font-size: 0.9rem;
+}
+
+.container {
+  /* max-width: 1200px;
+  margin: 0 auto; */
+  
+  padding: 0 1rem;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  /* gap: 2rem; */
+  margin-bottom: 2rem;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-logo {
+  height: 40px;
+  width: auto;
+}
+
+.footer-brand h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.footer-contact p {
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-contact i {
+  color: white;
+  width: 20px;
+  text-align: center;
+  
+}
+
+.footer-social {
+  color: #fff;
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-social a {
+  color: #fff;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.footer-social a:hover {
+  color: #4299e1;
+}
+
+.footer-copyright {
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 1px solid #ffffff;
+  color: #a0aec0;
+}
+.footer-copyright p{
+  color: #fff;
+}
+
+@media (min-width: 768px) {
+  .footer-content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .footer-contact {
+    text-align: center;
+  }
+}

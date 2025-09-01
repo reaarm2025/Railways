@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Blog Posts{% endblock %}
+
+{% block content %}
+<div class="news-splash">Our Blog</div>
+
+ <div class="container fade-in-on-scroll hidden-section ">
+        <h1>{% if category %}{{ category.name }}{% else %}Latest Posts{% endif %}</h1>
+
+        <div class="masonry" data-aos="fade-up" data-aos-delay="100">
+            {% for post in posts %}
+            <div class="masonry-item">
+                <div class="card">
+                    {% if post.featured_image %}
+                    <img src="{{ post.featured_image.url }}" alt="{{ post.title }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h2>{{ post.title }}</h2>
+                        <div class="meta">By {{ post.author }} on {{ post.created_at|date:"M d, Y" }}</div>
+                        <p>{{ post.content|striptags|truncatewords:20 }}</p>
+                        <a href="{{ post.get_absolute_url }}">Read More</a>
+                    </div>
+                    <div class="card-footer">
+                        {% for category in post.categories.all %}
+                        <span class="badge">{{ category.name }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+ <!-- Newsletter  css comes from blog.css
+    <section class="newsletter-section">
+        <div class="newsletter-container">
+            <div class="newsletter-text">
+                <h2>Join Our Creative Community</h2>
+                <p>Get the latest articles and resources sent straight to your inbox</p>
+            </div>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Your email address">
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section> -->
+
+    {% include "includes/book_demo_banner.html" %}
+
+
+{% endblock %}
+
+{% block extra_js %}
+
+    <script>
+        // Slide-in on scroll using IntersectionObserver
+       
+        document.addEventListener('DOMContentLoaded', function () {
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('.masonry-item').forEach(item => {
+                observer.observe(item);
+            });
+        });
+    </script>
+{% endblock %}

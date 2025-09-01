@@ -1,0 +1,20 @@
+<div class="modal" id="newsletter-modal">
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <h2>Subscribe to Our Newsletter</h2>
+        <p>Get the latest articles and news delivered to your inbox.</p>
+        <form id="newsletter-form" method="post" action="{% url 'blog:newsletter_subscribe' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="text" name="name" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Your Email" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Subscribe</button>
+            </div>
+        </form>
+        <p class="privacy-notice">We respect your privacy. Unsubscribe at any time.</p>
+    </div>
+</div>

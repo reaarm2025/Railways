@@ -1,0 +1,12 @@
+<div class="mb-4">
+    <h5>Join Our Newsletter</h5>
+    <p>Stay updated with our latest posts</p>
+    <form id="newsletterForm" method="post" action="{% url 'subscribe_newsletter' %}">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            <input type="email" class="form-control" name="email" placeholder="Your email address" required>
+            <button class="btn btn-primary" type="submit">Subscribe</button>
+        </div>
+    </form>
+    <div id="newsletterResponse" class="mt-2"></div>
+</div>
