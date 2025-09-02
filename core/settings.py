@@ -19,6 +19,16 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-placeholder')
 # Allowed Hosts
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://railways-production-e547.up.railway.app",
+    "https://www.reaarm.com",
+    "https://reaarm.com",
+]
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+
 # Installed Apps
 INSTALLED_APPS = [
     'django.contrib.admin',
